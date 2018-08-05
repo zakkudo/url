@@ -53,6 +53,8 @@ function createDuplicateQueryError(url) {
  *
  * String(url); // 'http://backend/v1/users/5678/detail?page=3'
  *
+ * @throws {UrlError} On issues during serialization or construction of the url
+ * @throws {QueryStringError} On issues during serialization or construction of the query string
  * @module Url
  */
 export default class Url {
@@ -69,10 +71,10 @@ export default class Url {
             const [_url, _params] = parse(url);
 
             this.params = _params;
-            this.url = _url;
+            this.base = _url;
         } else {
             this.params = params;
-            this.url = url;
+            this.base = url;
         }
     }
 
@@ -84,7 +86,7 @@ export default class Url {
         const pattern = /\/(:[^/]+)/g;
         const query = new QueryString(this.params);
 
-        const url = this.url.replace(pattern, (m, match) => {
+        const url = this.base.replace(pattern, (m, match) => {
             const key = match.substring(1);
             const param = query[key];
 
@@ -94,13 +96,13 @@ export default class Url {
                 return String(`/${param}`);
             }
 
-            throw new UrlError(`No replacement exists for ${match} in the params`, this.url);
+            throw new UrlError(`No replacement exists for ${match} in the params`, this.base);
         });
 
         const queryAsString = String(query);
 
         if (url.includes('?') && queryAsString.length) {
-            throw new UrlError('Trying to add duplicate query param when already exists', this.url);
+            throw new UrlError('Trying to add duplicate query param when already exists', this.base);
         }
 
         return `${url}${queryAsString}`;

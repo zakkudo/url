@@ -19,7 +19,7 @@ describe('lib/Url', () => {
 
         Helper.assert(url, {
             asObject: {
-                url: 'http://backend/v1',
+                base: 'http://backend/v1',
                 params: {},
             },
             asString: 'http://backend/v1',
@@ -33,7 +33,7 @@ describe('lib/Url', () => {
 
         Helper.assert(url, {
             asObject: {
-                url: 'http://backend/v1',
+                base: 'http://backend/v1',
                 params: {
                     'testString': 'value1',
                 },
@@ -42,7 +42,7 @@ describe('lib/Url', () => {
         });
     });
 
-    it('udpates url a fter param updated', () => {
+    it('updates url after param updated', () => {
         const url = new Url('http://backend/v1/users/:id/detail', {
             'id': '1234',
         });
@@ -51,12 +51,30 @@ describe('lib/Url', () => {
 
         Helper.assert(url, {
             asObject: {
-                url: 'http://backend/v1/users/:id/detail',
+                base: 'http://backend/v1/users/:id/detail',
                 params: {
                     'id': '5678'
                 },
             },
             asString: 'http://backend/v1/users/5678/detail',
+        });
+    });
+
+    it('updates url after base updated', () => {
+        const url = new Url('http://backend/v1/users/:id/detail', {
+            'id': '1234',
+        });
+
+        url.base = 'http://frontend/v1/users/:id/detail';
+
+        Helper.assert(url, {
+            asObject: {
+                base: 'http://frontend/v1/users/:id/detail',
+                params: {
+                    'id': '1234'
+                },
+            },
+            asString: 'http://frontend/v1/users/1234/detail',
         });
     });
 
@@ -68,7 +86,7 @@ describe('lib/Url', () => {
 
         Helper.assert(url, {
             asObject: {
-                url: 'http://backend/v1/users/:id/detail',
+                base: 'http://backend/v1/users/:id/detail',
                 params: {
                     'testString': 'value1',
                     'id': '1234',
@@ -87,7 +105,7 @@ describe('lib/Url', () => {
 
         Helper.assert(url, {
             asObject: {
-                url: 'http://backend/v1/users/:userId/roles/:roleId',
+                base: 'http://backend/v1/users/:userId/roles/:roleId',
                 params: {
                     'testString': 'value1',
                     'userId': '1234',
@@ -124,7 +142,7 @@ describe('lib/Url', () => {
 
     it('throws an exception when query string added after initialization', () => {
         const url = new Url('http://backend/v1/users', {offset: 5});
-        url.url = url.url + '?invalid=true';
+        url.base = url.base + '?invalid=true';
 
         expect(() => String(url)).toThrow(
             new UrlError(

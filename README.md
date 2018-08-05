@@ -16,6 +16,11 @@ Install with:
 yarn add @zakkudo/url
 ```
 
+**Throws**:
+
+- <code>UrlError</code> On issues during serialization or construction of the url
+- <code>QueryStringError</code> On issues during serialization or construction of the query string
+
 **Example** *(Generate URL with interpolation)*  
 ```js
 import Url from '@zakkudo/url';
