@@ -53,6 +53,18 @@ function createDuplicateQueryError(url) {
  *
  * String(url); // 'http://backend/v1/users/5678/detail?page=3'
  *
+ * //Update the url base after the fact
+ *
+ * url.base = 'http://frontend/v1/users/:id/detail';
+ *
+ * String(url); // 'http://frontend/v1/users/5678/detail?page=3'
+ *
+ * @example <caption>Generate object using raw url</caption>
+ *
+ * const url = new Url('http://backend/v1/users?limit=20');
+ *
+ * JSON.stringify(url); // {"base": "http://backend/v1/users", "params": {"limit": 20}}
+ *
  * @throws {UrlError} On issues during serialization or construction of the url
  * @throws {QueryStringError} On issues during serialization or construction of the query string
  * @module Url

@@ -38,6 +38,19 @@ url.toString(); // 'http://backend/v1/users/1234/detail?page=3'
 url.param.id = '5678';
 
 String(url); // 'http://backend/v1/users/5678/detail?page=3'
+
+//Update the url base after the fact
+
+url.base = 'http://frontend/v1/users/:id/detail';
+
+String(url); // 'http://frontend/v1/users/5678/detail?page=3'
+```
+**Example** *(Generate object using raw url)*  
+```js
+
+const url = new Url('http://backend/v1/users?limit=20');
+
+JSON.stringify(url); // {"base": "http://backend/v1/users", "params": {"limit": 20}}
 ```
 
 * [Url](#module_Url)
