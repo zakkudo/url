@@ -3,6 +3,9 @@
 ## Url
 Make working with urls enjoyable.
 
+[![Build Status](https://travis-ci.org/zakkudo/url.svg?branch=master)](https://travis-ci.org/zakkudo/url)
+[![Coverage Status](https://coveralls.io/repos/github/zakkudo/url/badge.svg?branch=master)](https://coveralls.io/github/zakkudo/url?branch=master)
+
 Why use this?
 
 - Params are accepted as a separate object
