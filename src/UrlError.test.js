@@ -7,8 +7,7 @@ describe('lib/errors/UrlError', () => {
             'test url'
         );
 
-        //Broken with jest coverage
-        //expect(String(error)).toEqual('UrlError: test message <test url>');
+        expect(UrlError.prototype.toString.apply(error)).toEqual('UrlError: test message <test url>');
     });
 });
 
