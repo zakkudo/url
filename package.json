@@ -1,6 +1,6 @@
 {
   "name": "@zakkudo/url",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Make working with urls enjoyable.",
   "keywords": [
     "url",
@@ -29,7 +29,7 @@
     "regenerator-runtime": "^0.12.1"
   },
   "dependencies": {
-    "@zakkudo/query-string": "^0.0.5"
+    "@zakkudo/query-string": "^0.0.7"
   },
   "scripts": {
     "build": "scripts/build.sh",

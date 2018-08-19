@@ -523,9 +523,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@zakkudo/query-string@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@zakkudo/query-string/-/query-string-0.0.5.tgz#22785c35b265dca56f756d69373764989e52db46"
+"@zakkudo/query-string@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@zakkudo/query-string/-/query-string-0.0.7.tgz#be952cbe1c5c610321cf2803f64c641a2a7a220c"
 
 abab@^1.0.4:
   version "1.0.4"
