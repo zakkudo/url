@@ -10,15 +10,19 @@
   "files": [
     "*"
   ],
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "repository": "github:zakkudo/url",
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.56",
     "@babel/core": "^7.0.0-beta.56",
+    "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0-beta.56",
     "babel-core": "^7.0.0-0",
     "babel-jest": "^23.4.2",
-    "coveralls": "^3.0.2",
+    "babel-plugin-transform-undefined-to-void": "^6.9.4",
     "eslint": "^4.19.1",
     "eslint-plugin-jasmine": "^2.10.1",
     "eslint-plugin-node": "^7.0.1",
@@ -26,10 +30,11 @@
     "jest-cli": "^23.4.2",
     "jsdoc": "^3.5.5",
     "jsdoc-to-markdown": "^4.0.1",
-    "regenerator-runtime": "^0.12.1"
+    "snyk": "^1.95.0"
   },
   "dependencies": {
-    "@zakkudo/query-string": "^0.0.7"
+    "@babel/runtime-corejs2": "^7.0.0",
+    "@zakkudo/query-string": "^0.0.10"
   },
   "scripts": {
     "build": "scripts/build.sh",
