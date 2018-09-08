@@ -22,6 +22,7 @@ const newContents = lines.filter((l) => {
      return !l.startsWith('### @');
 }).map((l, index, lines) => {
     const innerClassOfPrefix = '**Kind**: inner class of';
+    const innerMethodOfPrefix = '**Kind**: inner method of';
 
     if (l.startsWith('#### @')) {
         return l + ' ⏏';
@@ -29,6 +30,10 @@ const newContents = lines.filter((l) => {
 
     if (l.startsWith(innerClassOfPrefix)) {
         return '\n**Kind**: Exported class\n';
+    }
+
+    if (l.startsWith(innerMethodOfPrefix)) {
+        return '\n**Kind**: Exported function\n';
     }
 
     return l;

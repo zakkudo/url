@@ -14,6 +14,10 @@ class UrlError extends Error {
      */
     constructor(message, url) {
         super(`${message} <${url}>`);
+
+        /**
+         * The related url fragment when the error was generated
+         */
         this.url = url;
     }
 
