@@ -115,6 +115,11 @@ for invalid errors.
 **Kind**: Exported class
 
 **Extends**: <code>Error</code>  
+
+* [~UrlError](#module_@zakkudo/url/UrlError..UrlError) ⇐ <code>Error</code>
+    * [new UrlError(message, url)](#new_module_@zakkudo/url/UrlError..UrlError_new)
+    * [.url](#module_@zakkudo/url/UrlError..UrlError+url)
+
 <a name="new_module_@zakkudo/url/UrlError..UrlError_new"></a>
 
 #### new UrlError(message, url)
@@ -124,6 +129,12 @@ for invalid errors.
 | message | <code>String</code> | A message describing the reason for the error. |
 | url | <code>String</code> | The related url fragment when the error was generated |
 
+<a name="module_@zakkudo/url/UrlError..UrlError+url"></a>
+
+#### urlError.url
+The related url fragment when the error was generated
+
+**Kind**: instance property of [<code>UrlError</code>](#module_@zakkudo/url/UrlError..UrlError)  
 <a name="module_@zakkudo/url/QueryStringError"></a>
 
 <a name="module_@zakkudo/url/QueryStringError..QueryStringError"></a>
