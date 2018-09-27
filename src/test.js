@@ -42,6 +42,62 @@ describe('lib/Url', () => {
         });
     });
 
+    it('encodes the url params', () => {
+        const url = new Url('http://backend/v1', {
+            'testString': '{}',
+        });
+
+        Helper.assert(url, {
+            asObject: {
+                base: 'http://backend/v1',
+                params: {
+                    'testString': '{}',
+                },
+            },
+            asString: 'http://backend/v1?testString=%7B%7D',
+        });
+    });
+
+    it('unsafe makes url params not be encoded', () => {
+        const url = new Url('http://backend/v1', {
+            'testString': '{}',
+        }, {unsafe: true});
+
+        Helper.assert(url, {
+            asObject: {
+                base: 'http://backend/v1',
+                params: {
+                    'testString': '{}',
+                },
+            },
+            asString: 'http://backend/v1?testString={}',
+        });
+    });
+
+    it('stringifies the url with preserialized params', () => {
+        const url = new Url('http://backend/v1', 'teststring=2');
+
+        Helper.assert(url, {
+            asObject: {
+                base: 'http://backend/v1',
+                params: {teststring: 2}
+            },
+            asString: 'http://backend/v1?teststring=2',
+        });
+    });
+
+    it('strips keys with no values', () => {
+        const url = new Url('http://backend/v1', 'teststring');
+
+        Helper.assert(url, {
+            asObject: {
+                base: 'http://backend/v1',
+                params: {},
+            },
+            asString: 'http://backend/v1',
+        });
+    });
+
     it('updates url after param updated', () => {
         const url = new Url('http://backend/v1/users/:id/detail', {
             'id': '1234',
@@ -78,7 +134,7 @@ describe('lib/Url', () => {
         });
     });
 
-    it('stringifies the url with replacmeent patterns and with params', () => {
+    it('stringifies the url with replacement patterns and with params', () => {
         const url = new Url('http://backend/v1/users/:id/detail', {
             'testString': 'value1',
             'id': '1234',
@@ -96,7 +152,7 @@ describe('lib/Url', () => {
         });
     });
 
-    it('stringifies the url with multiple replacmeent patterns and with params', () => {
+    it('stringifies the url with multiple replacement patterns and with params', () => {
         const url = new Url('http://backend/v1/users/:userId/roles/:roleId', {
             'testString': 'value1',
             'userId': '1234',

@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.0.0",
-    "@zakkudo/query-string": "^0.0.12"
+    "@zakkudo/query-string": "^0.0.13"
   },
   "scripts": {
     "build": "scripts/build.sh",

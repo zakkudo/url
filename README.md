@@ -93,16 +93,18 @@ try {
 
 <a name="new_module_@zakkudo/url..Url_new"></a>
 
-#### new Url(url, params)
+#### new Url(url, [params], [options])
 **Throws**:
 
 - [<code>UrlError</code>](#module_@zakkudo/url/UrlError..UrlError) On issues during serialization or construction of the url
 - [<code>QueryStringError</code>](#module_@zakkudo/url/QueryStringError..QueryStringError) On issues during serialization or construction of the query string
 
-| Param | Type | Description |
-| --- | --- | --- |
-| url | <code>String</code> | The url pattern |
-| params | <code>Object</code> | Params to interpolate or append to the url when serialized to a string. |
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| url | <code>String</code> |  | The url pattern |
+| [params] | <code>Object</code> |  | Params to interpolate or append to the url as a query string when serialized. |
+| [options] | <code>Object</code> |  | Modifiers for how the query string object is contructed |
+| [options.unsafe] | <code>Boolean</code> | <code>false</code> | Disable url escaping of key/value pairs. Useful for servers that use unsafe characters as delimiters |
 
 <a name="module_@zakkudo/url/UrlError"></a>
 
