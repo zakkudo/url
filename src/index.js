@@ -10,10 +10,10 @@ import UrlError from './UrlError';
  * @param {String} url - The url
  * @return {Array} The url/params object
  */
-function parse(url) {
+function parse(url, unsafe) {
     const [_url, _params] = url.split('?');
 
-    return [_url, JSON.parse(JSON.stringify(new QueryString(_params)))];
+    return [_url, JSON.parse(JSON.stringify(new QueryString(_params, {unsafe})))];
 }
 
 /**
@@ -32,20 +32,24 @@ function createDuplicateQueryError(url) {
 class Url {
     /**
      * @param {String} url - The url pattern
-     * @param {Object} params - Params to interpolate or append to the url when serialized to a string.
+     * @param {Object} [params] - Params to interpolate or append to the url as a query string when serialized.
+     * @param {Object} [options] - Modifiers for how the query string object is contructed
+     * @param {Boolean} [options.unsafe = false] - Disable url escaping of key/value pairs. Useful for servers that use unsafe characters as delimiters
      */
-    constructor(url, params = {}) {
+    constructor(url, params = {}, options = {}) {
+        const unsafe = options.unsafe;
+
         if (url.includes('?')) {
             if (Object.keys(params).length || url.indexOf('?') !== url.lastIndexOf('?')) {
                 throw createDuplicateQueryError(url);
             }
 
-            const [_url, _params] = parse(url);
+            const [_url, _params] = parse(url, unsafe);
 
-            this.params = _params;
+            this.params = new QueryString(_params, {unsafe});
             this.base = _url;
         } else {
-            this.params = params;
+            this.params = new QueryString(params, {unsafe});
             this.base = url;
         }
     }
@@ -57,7 +61,7 @@ class Url {
      */
     toString() {
         const pattern = /\/(:[^/]+)/g;
-        const query = new QueryString(this.params);
+        const query = this.params;
 
         const url = this.base.replace(pattern, (m, match) => {
             const key = match.substring(1);
