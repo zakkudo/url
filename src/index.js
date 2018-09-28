@@ -27,14 +27,16 @@ function createDuplicateQueryError(url) {
 /**
  *
  * @throws {module:@zakkudo/url/UrlError~UrlError} On issues during serialization or construction of the url
- * @throws {module:@zakkudo/url/QueryStringError~QueryStringError} On issues during serialization or construction of the query string
+ * @throws {module:@zakkudo/url/QueryStringError~QueryStringError} On issues
+ * during serialization or construction of the query string
  */
 class Url {
     /**
      * @param {String} url - The url pattern
      * @param {Object} [params] - Params to interpolate or append to the url as a query string when serialized.
      * @param {Object} [options] - Modifiers for how the query string object is contructed
-     * @param {Boolean} [options.unsafe = false] - Disable url escaping of key/value pairs. Useful for servers that use unsafe characters as delimiters
+     * @param {Boolean} [options.unsafe = false] - Disable url escaping of
+     * key/value pairs. Useful for servers that use unsafe characters as delimiters
      */
     constructor(url, params = {}, options = {}) {
         const unsafe = options.unsafe;
@@ -61,7 +63,8 @@ class Url {
      */
     toString() {
         const pattern = /\/(:[^/]+)/g;
-        const query = this.params;
+        // Makes a copy of the query string because we modify it for serialization
+        const query = new QueryString(this.params);
 
         const url = this.base.replace(pattern, (m, match) => {
             const key = match.substring(1);

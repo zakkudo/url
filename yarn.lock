@@ -556,9 +556,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@zakkudo/query-string@^0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@zakkudo/query-string/-/query-string-0.0.13.tgz#91fc39ad05680bca0e35a8a216b1090ae65304b2"
+"@zakkudo/query-string@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@zakkudo/query-string/-/query-string-0.0.14.tgz#4923d74dbf4366537453886d071ba3e91c63c6b9"
   dependencies:
     "@babel/runtime-corejs2" "^7.0.0"
 
