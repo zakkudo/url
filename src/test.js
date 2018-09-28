@@ -159,6 +159,28 @@ describe('lib/Url', () => {
             'roleId': '5678',
         });
 
+        url.toString();
+
+        Helper.assert(url, {
+            asObject: {
+                base: 'http://backend/v1/users/:userId/roles/:roleId',
+                params: {
+                    'testString': 'value1',
+                    'userId': '1234',
+                    'roleId': '5678',
+                },
+            },
+            asString: 'http://backend/v1/users/1234/roles/5678?testString=value1',
+        });
+    });
+
+    it('can be stringified twice with no errors', () => {
+        const url = new Url('http://backend/v1/users/:userId/roles/:roleId', {
+            'testString': 'value1',
+            'userId': '1234',
+            'roleId': '5678',
+        });
+
         Helper.assert(url, {
             asObject: {
                 base: 'http://backend/v1/users/:userId/roles/:roleId',
