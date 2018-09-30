@@ -97,7 +97,8 @@ try {
 **Throws**:
 
 - [<code>UrlError</code>](#module_@zakkudo/url/UrlError..UrlError) On issues during serialization or construction of the url
-- [<code>QueryStringError</code>](#module_@zakkudo/url/QueryStringError..QueryStringError) On issues during serialization or construction of the query string
+- [<code>QueryStringError</code>](#module_@zakkudo/url/QueryStringError..QueryStringError) On issues
+during serialization or construction of the query string
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
