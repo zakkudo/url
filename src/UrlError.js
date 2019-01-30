@@ -8,25 +8,25 @@
  * @extends Error
  */
 class UrlError extends Error {
-    /**
-     * @param {String} message - A message describing the reason for the error.
-     * @param {String} url - The related url fragment when the error was generated
-     */
-    constructor(message, url) {
-        super(`${message} <${url}>`);
-
-        /**
-         * The related url fragment when the error was generated
-         */
-        this.url = url;
-    }
+  /**
+   * @param {String} message - A message describing the reason for the error.
+   * @param {String} url - The related url fragment when the error was generated
+   */
+  constructor(message, url) {
+    super(`${message} <${url}>`);
 
     /**
-     * @private
+     * The related url fragment when the error was generated
      */
-    toString() {
-        return `UrlError: ${this.message}`;
-    }
+    this.url = url;
+  }
+
+  /**
+   * @private
+   */
+  toString() {
+    return `UrlError: ${this.message}`;
+  }
 }
 
 export default UrlError;
